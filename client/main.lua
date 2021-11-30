@@ -134,9 +134,39 @@ AddEventHandler("qb-tequilalajob:stronzo-beer", function()
         if HasItem then
            MakeStronzo()
         else
-            QBCore.Functions.Notify("You don't have a Small Glass..", "error")
+            QBCore.Functions.Notify("You don't have a Pint Glass..", "error")
         end
-      end, 'smallglass')
+      end, 'pintglass')
+    else
+        QBCore.Functions.Notify("You must be Clocked into work", "error")
+    end
+end)
+
+RegisterNetEvent("qb-tequilalajob:dusche-beer")
+AddEventHandler("qb-tequilalajob:dusche-beer", function()
+    if onDuty then
+    QBCore.Functions.TriggerCallback('QBCore:HasItem', function(HasItem)
+        if HasItem then
+           MakeDusche()
+        else
+            QBCore.Functions.Notify("You don't have a Pint Glass..", "error")
+        end
+      end, 'pintglass')
+    else
+        QBCore.Functions.Notify("You must be Clocked into work", "error")
+    end
+end)
+
+RegisterNetEvent("qb-tequilalajob:sunny-cocktail")
+AddEventHandler("qb-tequilalajob:sunny-cocktail", function()
+    if onDuty then
+    QBCore.Functions.TriggerCallback('QBCore:HasItem', function(HasItem)
+        if HasItem then
+           MakeSunny()
+        else
+            QBCore.Functions.Notify("You don't have a Cocktail Glass..", "error")
+        end
+      end, 'cocktailglass')
     else
         QBCore.Functions.Notify("You must be Clocked into work", "error")
     end
@@ -193,7 +223,55 @@ function MakeLogger()
 end
 
 function MakeStronzo()
-    TriggerServerEvent('QBCore:Server:RemoveItem', "smallglass", 1)
+    TriggerServerEvent('QBCore:Server:RemoveItem', "pintglass", 1)
+    QBCore.Functions.Progressbar("pickup", "Mixing Cocktail...", 8000, false, true, {
+        disableMovement = true,
+        disableCarMovement = false,
+        disableMouse = false,
+        disableCombat = false,
+    },{
+        animDict = "amb@world_human_drinking_fat@coffee@female@base",
+        anim = "base",
+        flags = 8,
+    }, {
+        model = "prop_pint_glass_tall",
+        bone = 28422,
+        coords = vector3(-0.005, 0.00, 0.00),
+        rotation = vector3(175.0, 160.0, 0.0),
+    } 
+)
+    Citizen.Wait(6000)
+    TriggerServerEvent('QBCore:Server:AddItem', "stronzo-beer", 1)
+    --TriggerEvent("inventory:client:ItemBox", QBCore.Shared.Items["stronzo-beer"], "add")
+    QBCore.Functions.Notify("You made a cocktail", "success")
+end
+
+function MakeDusche()
+    TriggerServerEvent('QBCore:Server:RemoveItem', "pintglass", 1)
+    QBCore.Functions.Progressbar("pickup", "Mixing Cocktail...", 8000, false, true, {
+        disableMovement = true,
+        disableCarMovement = false,
+        disableMouse = false,
+        disableCombat = false,
+    },{
+        animDict = "amb@world_human_drinking_fat@coffee@female@base",
+        anim = "base",
+        flags = 8,
+    }, {
+        model = "prop_pint_glass_tall",
+        bone = 28422,
+        coords = vector3(-0.005, 0.00, 0.00),
+        rotation = vector3(175.0, 160.0, 0.0),
+    } 
+)
+    Citizen.Wait(6000)
+    TriggerServerEvent('QBCore:Server:AddItem', "dusche-beer", 1)
+    --TriggerEvent("inventory:client:ItemBox", QBCore.Shared.Items["dusche-beer"], "add")
+    QBCore.Functions.Notify("You made a cocktail", "success")
+end
+
+function MakeSunny()
+    TriggerServerEvent('QBCore:Server:RemoveItem', "cocktailglass", 1)
     QBCore.Functions.Progressbar("pickup", "Mixing Cocktail...", 8000, false, true, {
         disableMovement = true,
         disableCarMovement = false,
@@ -216,11 +294,10 @@ function MakeStronzo()
     } 
 )
     Citizen.Wait(6000)
-    TriggerServerEvent('QBCore:Server:AddItem', "stronzo-beer", 1)
-    --TriggerEvent("inventory:client:ItemBox", QBCore.Shared.Items["stronzo-beer"], "add")
+    TriggerServerEvent('QBCore:Server:AddItem', "sunny-cocktail", 1)
+    --TriggerEvent("inventory:client:ItemBox", QBCore.Shared.Items["sunny-cocktail"], "add")
     QBCore.Functions.Notify("You made a cocktail", "success")
 end
-
 
 
 -- Shop --   

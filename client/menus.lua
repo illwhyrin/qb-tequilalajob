@@ -310,6 +310,14 @@ RegisterNetEvent('nh-context:tequilalaBeerMenu', function(data)
         },
         {
             id = 4,
+            header = "• Dusche Beer",
+            txt = "Pint Glass",
+            params = {
+                event = "qb-tequilalajob:dusche-beer"
+            }
+        },
+        {
+            id = 5,
             header = "Close (ESC)",
             txt = "",
         },
@@ -325,38 +333,14 @@ RegisterNetEvent('nh-context:tequilalaMixerMenu', function(data)
         },
         {
             id = 1,
-            header = "• Hulk Cocktail",
-            txt = "Small Glass",
+            header = "• Sunny Cocktail",
+            txt = "Cocktail Glass",
             params = {
-                event = "qb-tequilalajob:hulkcocktail"
+                event = "qb-tequilalajob:sunny-cocktail"
             }
         },
         {
             id = 2,
-            header = "• Milk Dragon",
-            txt = "Small Glass",
-            params = {
-                event = "qb-tequilalajob:milkdragon"
-            }
-        },
-        {
-            id = 3,
-            header = "• Marvel Cocktail",
-            txt = "Cocktail Glass",
-            params = {
-                event = "qb-tequilalajob:marvelcocktail"
-            }
-        },
-        {
-            id = 4,
-            header = "• Yoshi Shooter",
-            txt = "Cocktail Glass",
-            params = {
-                event = "qb-tequilalajob:yoshishooter"
-            }
-        },
-        {
-            id = 5,
             header = "Close (ESC)",
             txt = "",
         },
